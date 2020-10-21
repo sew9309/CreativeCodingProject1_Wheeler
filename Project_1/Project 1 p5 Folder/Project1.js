@@ -1,5 +1,4 @@
-/*Adjective: Hungry
-
+/*
 Screens:
 1) Hunger Spotlight
 Searching for red hunger ball, which grows once you've spotted it. Represents hunger growing once you realize you are hungry.
@@ -17,7 +16,7 @@ let screen = 1;
 //let batteryLevel = 175;
 //let batteryCol = color(255, 0, 0);
 let col = 255;
-let hungerBall = 50;
+let ball = 50;
 var screenFade = 0;
 
 function setup() {
@@ -34,8 +33,8 @@ function draw() {
     triangle(mouseX - 100, height, (width / 4) * 3, 0, mouseX + 100, height);
     fill(255, 0, 0);
     if (mouseX == (300, 400)) {
-      circle(width / 2, 700, hungerBall);
-      hungerBall++;
+      circle(width / 2, 700, ball);
+      ball++;
     }
   } //Screen 1
 
