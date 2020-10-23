@@ -1,5 +1,7 @@
 /*
 Screens:
+NEW IDEA: Start with BatteryLow screen. Scale down battery to top right. Game becomes finding charge for battery, which goes up with every charge.
+
 1) Hunger Spotlight
 Searching for red hunger ball, which grows once you've spotted it. Represents hunger growing once you realize you are hungry.
 2) Battery Low
