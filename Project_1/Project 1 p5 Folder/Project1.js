@@ -13,68 +13,37 @@ A bunch of objects fall onto the ground, bouncing everywhere until they all sett
 */
 
 let screen = 1;
-//let batteryLevel = 175;
-//let batteryCol = color(255, 0, 0);
 let col = 255;
 let ball = 50;
 var screenFade = 0;
+var spot1;
+var spot2;
+let b;
 
 function setup() {
   createCanvas(800, 800);
+  b = new Battery();
+  spot1 = new Spotlight(10,10);
 }
 
 function draw() {
 
   if (screen == 1) {
     background(0);
-    noStroke();
-    fill(255, 204, 0, 50);
-    triangle(mouseX - 100, height, width / 4, 0, mouseX + 100, height);
-    triangle(mouseX - 100, height, (width / 4) * 3, 0, mouseX + 100, height);
-    fill(255, 0, 0);
-    if (mouseX == (300, 400)) {
-      circle(width / 2, 700, ball);
-      ball++;
-    }
+    spot1.display();
   } //Screen 1
 
   //Screen 2: Battery Low
   if (screen == 2) {
     screenFade = map(batteryLevel, 0, 175, 0, 255);//learned how to use map() from Shiffman's 2.4 p5.js tutorial
     background(screenFade);
-    rectMode(CENTER);
-    fill(255);
-    rect(490, height / 2, 10, 50, 10); //White notch on battery
-    stroke(255);
-    strokeWeight(3);
-    fill(0, 0);
-    rect(width / 2, height / 2, 175, 75, 10); //Battery outline
-
-    //for (batteryLevel = 175; batteryLevel > 0; batteryLevel--){
-    fill(0, 255, 0); //COLOR GREEN BATTERY
-    //fill(batteryCol)
-    noStroke();
-    rectMode(CORNER);
-    rect(314, 363, batteryLevel, 73, 10); //Green battery
-
-
-    //for loop wasn't working for some reason!!
-    if (batteryLevel > 10) {
-      batteryLevel--;
-    } else if (batteryLevel < 11) {
-      batterylevel = 10;
-      fill(255, 0, 0);
-      rect(314, 363, batteryLevel, 73, 10); //Green battery
-      background(0, 50);
-    }
-
-
-    //}//for batteryLevel decreasing
+    b.display();
+    b.batteryLevel();
   } //Screen 2
 
   if (screen == 3) {
     background(255);
-  }
+  }//Screen 3
 } //draw
 
 function keyPressed() {
