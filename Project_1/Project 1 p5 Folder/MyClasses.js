@@ -1,50 +1,69 @@
 //I learned from TA Lilly's workshop to organize all my classes into one MyClasses.js file and call to it in the index script! Thank you Lilly <3
-
-class Spotlight {
-  constructor(x2, y2) {
-  this.x2 = x2;
-  this.y2 = y2;
-  }//Spotlight constructor
+class Energy {
+  constructor() {}
 
   display() {
-    background(0);
+    fill(255, 204, 0);
+    triangle(30, 75, 80, 20, 70, 75); //top of energy bolt
+    triangle(55, 55, 55, 140, 110, 55); //bottom of energy bolt
+  }
+
+  rain() {
+
+}
+}
+/*class Spotlight {
+  constructor(x2, y2) {
+    this.x2 = x2;
+    this.y2 = y2;
+  } //Spotlight constructor
+
+  display() {
     noStroke();
     fill(255, 204, 0, 50);
     triangle(0, height, this.x2, this.y2, 200, height);
-  }//Spotlight display
-}//class Spotlight
-//going to use a for loop to make the spotlights sweep from side to side and change directions when they hit the top of the screen
-
+  } //Energy display
+} //class Energy
+*/
 
 class Battery {
   constructor() {
-  this.level = 175;  
-  }//Battery constructor
-  
+    this.level = 175;
+    this.scale = 1;
+    this.col = color(0, 255, 0); //Green battery
+    this.x = width / 2;
+    this.y = height / 2;
+  } //Battery constructor
+
   batteryLevel() {
-  if (this.level > 10) {
+    if (this.level > 10) {
       this.level--;
-    } else if (this.level < 11) {
+      this.batteryCol = (0, 255, 0);
+      fill(this.col);
+    } else {
       this.level = 10;
-      fill(255, 0, 0);
-      rect(314, 363, this.level, 73, 10); //Green battery
+      this.col = color(255, 0, 0);
       background(0, 50);
-    }  
-  }//method batteryLevel
-  
+      this.x = mouseX;
+      this.y = mouseY;
+      this.scale = 0.5;
+      energyBall.display();
+      //energyBall.rain();
+    }
+  } //method batteryLevel
+
   display() {
-  rectMode(CENTER);
+    rectMode(CENTER);
     fill(255);
-    rect(490, height / 2, 10, 50, 10); //White notch on battery
+    rect(this.x + 90, this.y, 10, 50, 10); //White notch on battery
     stroke(255);
     strokeWeight(3);
     fill(0, 0);
-    rect(width / 2, height / 2, 175, 75, 10); //Battery outline
-  //for (batteryLevel = 175; batteryLevel > 0; batteryLevel--){
-    fill(0, 255, 0); //COLOR GREEN BATTERY
-    //fill(batteryCol)
+    rect(this.x, this.y, 175, 75, 10); //Battery outline
+    fill(this.col); //Fill battery in with green
     noStroke();
     rectMode(CORNER);
-    rect(314, 363, this.level, 73, 10); //Green battery
-  }//Battery display
-}//Class Battery
+    rect(this.x - 86, this.y - 37, this.level, 73, 10); //Green battery
+    scale(this.scale);
+  } //method Battery display
+} //Class Battery
