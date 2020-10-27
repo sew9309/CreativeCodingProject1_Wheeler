@@ -1,17 +1,55 @@
 //I learned from TA Lilly's workshop to organize all my classes into one MyClasses.js file and call to it in the index script! Thank you Lilly <3
 class Energy {
-  constructor() {}
+  constructor() {
+    this.position = createVector(width/2, height/2);
+    this.velocity = createVector();
+    this.acceleration = createVector(-0.001, 0.01);
+    this.topspeed = 10;
+  }
+
+  update() {
+    this.velocity.add(this.acceleration);
+    this.velocity.limit(this.topspeed);
+    this.position.add(this.velocity);
+  }//update() method
 
   display() {
     fill(255, 204, 0);
-    triangle(30, 75, 80, 20, 70, 75); //top of energy bolt
-    triangle(55, 55, 55, 140, 110, 55); //bottom of energy bolt
+    ellipse(this.position.x, this.position.y, 48, 48);
+    //triangle(this.position.x, this.position.y, 80, 20, 70, 75); //top of energy bolt
+    //triangle(55, 55, 55, 140, 110, 55); //bottom of energy bolt
+
+    //triangle(30, 75, 80, 20, 70, 75); //top of energy bolt
+    //triangle(55, 55, 55, 140, 110, 55); //bottom of energy bolt
+  }
+
+  checkEdges() {
+
+    print(width);
+    print(height);
+
+    if (this.position.x > width) {
+      this.position.x = 0;
+    }
+    else if (this.position.x < 0) {
+      this.position.x = width;
+    }
+
+    if (this.position.y > height) {
+      this.position.y = 0;
+    }
+    else if (this.position.y < 0) {
+      this.position.y = height;
+    }
   }
 
   rain() {
+//for (let i = 0; i <0, i++){
+  
+//}
+}//rain() method
+}//class Energy
 
-}
-}
 /*class Spotlight {
   constructor(x2, y2) {
     this.x2 = x2;
@@ -47,7 +85,10 @@ class Battery {
       this.x = mouseX;
       this.y = mouseY;
       this.scale = 0.5;
-      energyBall.display();
+      energyBolt.display();
+      energyBolt.update();
+      energyBolt.checkEdges();
+      energyBolt.display();
       //energyBall.rain();
     }
   } //method batteryLevel

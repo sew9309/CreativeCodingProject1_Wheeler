@@ -11,7 +11,7 @@ function setup() {
   //spot1 = new Spotlight(100, 0)
   b = new Battery();
   //spot1 = new Spotlight(10, 10);
-  energyBall = new Energy();
+  energyBolt = new Energy();
 }
 
 function draw() {
