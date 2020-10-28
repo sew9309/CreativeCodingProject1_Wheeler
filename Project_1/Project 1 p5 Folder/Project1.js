@@ -4,6 +4,7 @@ var screenFade = 0;
 //var spot2;
 let b;
 let energyBall;
+let fridge;
 
 function setup() {
   createCanvas(800, 800);
@@ -12,6 +13,7 @@ function setup() {
   b = new Battery();
   //spot1 = new Spotlight(10, 10);
   energyBolt = new Energy();
+  fridge = new Fridge();
 }
 
 function draw() {
@@ -30,7 +32,8 @@ function draw() {
   } //Screen 2
 
   if (screen == 3) {
-    background(255);
+    background(0);
+    fridge.display();
   }
 } //draw
 

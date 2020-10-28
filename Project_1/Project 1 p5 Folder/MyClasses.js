@@ -24,10 +24,6 @@ class Energy {
   }
 
   checkEdges() {
-
-    print(width);
-    print(height);
-
     if (this.position.x > width) {
       this.position.x = 0;
     }
@@ -108,3 +104,20 @@ class Battery {
     scale(this.scale);
   } //method Battery display
 } //Class Battery
+
+class Fridge {
+  constructor(){}
+  
+  display() {
+  //front of fridge
+    rectMode(CENTER);
+    fill(250, 0, 0);
+    rect(width/2, height/2 - 60, 175, 425);
+    fill(250, 128, 114);
+    rect(width/2, height/2 - 200, 175, 110);//freezer
+    rect(width/2, height/2, 175, 280);//fridge
+    fill(179, 179, 179);
+    rect(width/2 - 70, height/2 - 200, 5, 50);//freezer handle
+    rect(width/2 - 70, height/2, 5, 125);//fridge handle
+  }
+}//class Fridge
