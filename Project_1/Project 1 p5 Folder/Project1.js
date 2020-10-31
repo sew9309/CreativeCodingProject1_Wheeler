@@ -1,13 +1,11 @@
-let screen = 2;
+let screen = 1;
 var screenFade = 0;
-//var spot1;
-//var spot2;
 let b;
 let energyBall;
 let fridge;
 
 function setup() {
-  createCanvas(800, 800);
+  createCanvas(1500, 600);
   background(0);
   //spot1 = new Spotlight(100, 0)
   b = new Battery();
@@ -19,9 +17,8 @@ function setup() {
 function draw() {
 
   if (screen == 1) {
-    //spot1.display();
+    fridge.display();
   } //Screen 1
-
 
   //Screen 2: Battery Low
   if (screen == 2) {
@@ -34,7 +31,12 @@ function draw() {
   if (screen == 3) {
     background(0);
     fridge.display();
-  }
+    fridge.empty();
+  }//Screen 3
+
+  if (screen ==4) {
+
+  }//Screen 4
 } //draw
 
 function keyPressed() {
@@ -48,5 +50,7 @@ function keyPressed() {
     b.level += 5;
   } //if spacebar is pressed, increase battery level (AKA rectangle width)
 } //keyPressed
-//function food() {
-//}
+
+function mousePressed() {
+	fridge.clicked();
+}

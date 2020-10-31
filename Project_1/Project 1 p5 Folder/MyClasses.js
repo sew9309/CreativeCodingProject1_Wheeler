@@ -113,11 +113,41 @@ class Fridge {
     rectMode(CENTER);
     fill(250, 0, 0);
     rect(width/2, height/2 - 60, 175, 425);
-    fill(250, 128, 114);
+    fill(250, 128, 114);//salmon color
     rect(width/2, height/2 - 200, 175, 110);//freezer
     rect(width/2, height/2, 175, 280);//fridge
-    fill(179, 179, 179);
+    fill(179, 179, 179);//silver
     rect(width/2 - 70, height/2 - 200, 5, 50);//freezer handle
     rect(width/2 - 70, height/2, 5, 125);//fridge handle
+  }
+
+  empty() { //displays an empty fridge
+    fill(255);//white
+    rect(width/2, height/2 - 200, 160, 90, 2);//white freezer case
+    rect(width/2, height/2, 160, 260, 2);//white fridge case
+    fill(230);//gray for shelves
+    rect(width/2, height/2 - 220, 160, 35);//top freezer shelf
+    rect(width/2, height/2 - 180, 160, 35);//bottom freezer shelf
+    rect(width/2, height/2 - 90, 160, 60);//fridge shelf 1
+    rect(width/2, height/2 - 25, 160, 60);//fridge shelf 2
+    rect(width/2, height/2 + 40, 160, 60);//fridge shelf 3
+    rect(width/2, height/2 + 100, 160, 45);//fridge shelf 4
+
+    //door
+    fill(179, 179, 179);//silver
+    rect(width/2 + 90, height/2 - 235, 10, 5);//top freezer hinge
+    rect(width/2 + 90, height/2 - 160, 10, 5);//bottom freezer hinge
+    fill(250, 128, 114);//salmon color
+    rect(width/2 + 180, height/2 - 200, 175, 110, 2);//freezer door
+    rect(width/2 + 180, height/2, 175, 280, 2);//frige door
+    fill(220);
+    rect(width/2 + 180, height/2 - 200, 160, 90, 2);//freezer door case
+    rect(width/2 +180, height/2, 160, 260, 2);//fridge door case
+    rect(width/2 + 90, height/2 - 115, 10, 5);//top fridge hinge
+    rect(width/2 + 90, height/2 + 125, 10, 5);//top fridge hinge
+  }//empty method
+
+  clicked() {
+  	fridge.empty();
   }
 }//class Fridge
