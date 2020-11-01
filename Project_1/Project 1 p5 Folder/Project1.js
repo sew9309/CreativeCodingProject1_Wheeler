@@ -3,21 +3,27 @@ var screenFade = 0;
 let b;
 let energyBall;
 let fridge;
+let table;
+let phone;
 
 function setup() {
-  createCanvas(1500, 600);
+  createCanvas(1000, 600);
   background(0);
   //spot1 = new Spotlight(100, 0)
   b = new Battery();
   //spot1 = new Spotlight(10, 10);
   energyBolt = new Energy();
   fridge = new Fridge();
+  table = new Table();
+  phone = new Phone();
 }
 
 function draw() {
 
   if (screen == 1) {
     fridge.display();
+    fridge.empty();
+    table.display();
   } //Screen 1
 
   //Screen 2: Battery Low
@@ -30,8 +36,8 @@ function draw() {
 
   if (screen == 3) {
     background(0);
-    fridge.display();
-    fridge.empty();
+    //fridge.display();
+    //fridge.empty();
   }//Screen 3
 
   if (screen ==4) {
@@ -52,5 +58,6 @@ function keyPressed() {
 } //keyPressed
 
 function mousePressed() {
-	fridge.clicked();
+	if (mouseX )
+	fridge.empty();
 }

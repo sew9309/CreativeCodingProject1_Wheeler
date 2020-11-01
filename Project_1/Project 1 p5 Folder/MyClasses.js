@@ -151,3 +151,39 @@ class Fridge {
   	fridge.empty();
   }
 }//class Fridge
+
+class Table {
+  	constructor(){
+  		this.x1 = 200;
+  		this.y1 = 300;
+  	}
+
+  	display(){
+  		//quad(38, 31, 86, 20, 100, 63, 30, 76);
+  		//quad(this.x1, this.y1, this.x1 - 50, this.y1 + 11, this.x1 - 31, this.y1 - 25, this.x1 + 8, this.y1 - 41);
+  		//quad(this.x1, this.y1, this.x1 - 100, this.y1 + 10, this.x1 - 70, this.y1 - 25, this.x1 + 20, this.y1 - 20);
+  		fill(139, 69, 19);
+  		//legs
+  		rect(this.x1 - 55, this.y1 + 50, 50, 100);//back left leg
+  		rect(this.x1 + 55, this.y1 + 50, 50, 100);//back right leg
+  		rect(this.x1 + 100, this.y1 + 100, 50, 100);//front right leg
+  		rect(this.x1 - 100, this.y1 + 100, 50, 100);//front left leg
+  		rect(this.x1, this.y1, 250, 100)//tabletop
+
+  		phone.display();
+  	}
+  }//class Table
+
+  class Phone {
+  	constructor(){}
+
+	display(){
+		fill(0);
+  		rect(200, 300, 35, 60, 5);//phone border
+  		fill(255);
+  		rect(200, 300, 30, 55, 5);//phone screen
+  		fill(0);
+  		rect(200, 273, 17, 5, 5);//phone notch
+
+  	}
+  }//class Phone
