@@ -1,3 +1,8 @@
+//Sofia Wheeler
+//Professor Bennett 
+//Creative Coding Section E Fall 2020
+//Project 1
+
 let screen = 1;
 var screenFade = 0;
 let b;
@@ -5,25 +10,47 @@ let energyBall;
 let fridge;
 let table;
 let phone;
+let fridgeOpen = false;
+let energyBolts = [];
+let floor;
+let windows;
 
 function setup() {
   createCanvas(1000, 600);
   background(0);
-  //spot1 = new Spotlight(100, 0)
+  //spot1 = new Spotlight(100, 0);
   b = new Battery();
   //spot1 = new Spotlight(10, 10);
-  energyBolt = new Energy();
+  energyBolt = new Energy(0, 0, 150);
   fridge = new Fridge();
   table = new Table();
   phone = new Phone();
+  floor = new CheckeredFloor();
+  windows = new Windows();
 }
 
 function draw() {
 
   if (screen == 1) {
+    background(0);
+    floor.display();
     fridge.display();
-    fridge.empty();
     table.display();
+    windows.display();
+  
+  if (fridgeOpen == true) {
+  fridge.empty();
+  //dims background
+  fill(0, 90);
+    rect(width/2, height/2, width, height);
+    
+  fridge.fridgeLight();
+}
+
+else if (fridgeOpen == false) {
+  fridge.display();
+}//else if fridgeOpen is false
+
   } //Screen 1
 
   //Screen 2: Battery Low
@@ -32,6 +59,10 @@ function draw() {
     background(screenFade);
     b.display();
     b.batteryLevel();
+    energyBolt.update();
+    energyBolt.display();
+    energyBolt.checkEdges();
+    //energyBolt.clicked();
   } //Screen 2
 
   if (screen == 3) {
@@ -58,6 +89,12 @@ function keyPressed() {
 } //keyPressed
 
 function mousePressed() {
-	if (mouseX )
-	fridge.empty();
+if (mouseX > 175 && mouseX < 220){
+	screen = 2;
 }
+if (mouseX > width/2-100 && mouseX < 600){
+  fridgeOpen = !fridgeOpen;
+} 
+/*for (let i = 0; i <)
+energyBolts[i].clicked(); */
+}//function mousePressed

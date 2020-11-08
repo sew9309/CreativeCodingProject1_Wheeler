@@ -1,37 +1,42 @@
 //I learned from TA Lilly's workshop to organize all my classes into one MyClasses.js file and call to it in the index script! Thank you Lilly <3
 class Energy {
-  constructor() {
-    this.position = createVector(width/2, height/2);
+  constructor(x, y, r) {
+    this.position = createVector(random(width), 0);
     this.velocity = createVector();
     this.acceleration = createVector(-0.001, 0.01);
-    this.topspeed = 10;
-  }
+    /*this.x = x;
+    this.y = y;
+    this.r = r;
+    this.r = 150;*/
+  }//energy constructor
 
-  update() {
+  update() { //learned from acceleration portion of Nature of Code
     this.velocity.add(this.acceleration);
     this.velocity.limit(this.topspeed);
     this.position.add(this.velocity);
   }//update() method
 
   display() {
+    fill(255);
+    ellipse(this.position.x + 40, this.position.y + 10, 150);
     fill(255, 204, 0);
-    ellipse(this.position.x, this.position.y, 48, 48);
-    //triangle(this.position.x, this.position.y, 80, 20, 70, 75); //top of energy bolt
-    //triangle(55, 55, 55, 140, 110, 55); //bottom of energy bolt
+    triangle(this.position.x, this.position.y, this.position.x + 50, this.position.y - 55, this.position.x + 40, this.position.y); //top of energy bolt
+    triangle(this.position.x + 30, this.position.y - 10, this.position.x + 30, this.position.y + 75, this.position.x + 85, this.position.y - 10); //bottom of energy bolt
 
+//original hard coded drawing of lightning bolt
     //triangle(30, 75, 80, 20, 70, 75); //top of energy bolt
     //triangle(55, 55, 55, 140, 110, 55); //bottom of energy bolt
-  }
+  }//energy display
 
   checkEdges() {
-    if (this.position.x > width) {
+    if (this.position.x > width + 1000) {
       this.position.x = 0;
     }
     else if (this.position.x < 0) {
       this.position.x = width;
     }
 
-    if (this.position.y > height) {
+    if (this.position.y > height + 500) {
       this.position.y = 0;
     }
     else if (this.position.y < 0) {
@@ -39,11 +44,18 @@ class Energy {
     }
   }
 
-  rain() {
+  /*clicked(px, py) {
+      let d = dist(px, py, this.x, this.y);
+      if (d < this.r){
+        console.log("CLICKED ON ENERGY BOLT!");
+      }//checking to see if mouse is clicking energyBolt. If these distance is less than the radius, then it is touching the object.
+    }//energy clicked */
+
+  //rain() {
 //for (let i = 0; i <0, i++){
   
 //}
-}//rain() method
+//}//rain() method
 }//class Energy
 
 /*class Spotlight {
@@ -79,14 +91,14 @@ class Battery {
       this.col = color(255, 0, 0);
       background(0, 50);
       this.x = mouseX;
-      this.y = mouseY;
+      this.y = 500;
       this.scale = 0.5;
       energyBolt.display();
       energyBolt.update();
       energyBolt.checkEdges();
       energyBolt.display();
       //energyBall.rain();
-    }
+    }//else
   } //method batteryLevel
 
   display() {
@@ -112,14 +124,14 @@ class Fridge {
   //front of fridge
     rectMode(CENTER);
     fill(250, 0, 0);
-    rect(width/2, height/2 - 60, 175, 425);
+    rect(width/2, height/2 - 60, 175, 425);//
     fill(250, 128, 114);//salmon color
     rect(width/2, height/2 - 200, 175, 110);//freezer
     rect(width/2, height/2, 175, 280);//fridge
     fill(179, 179, 179);//silver
     rect(width/2 - 70, height/2 - 200, 5, 50);//freezer handle
     rect(width/2 - 70, height/2, 5, 125);//fridge handle
-  }
+  }//fridge display
 
   empty() { //displays an empty fridge
     fill(255);//white
@@ -147,9 +159,15 @@ class Fridge {
     rect(width/2 + 90, height/2 + 125, 10, 5);//top fridge hinge
   }//empty method
 
+  fridgeLight(){
+    noStroke();
+    fill(255, 204, 0, random(45, 80));
+    triangle(width/2 - 80, height/2 + 130, width/2, height/2 - 130, width/2 + 80, height/2 + 130);
+  }//fridge light method
+
   clicked() {
   	fridge.empty();
-  }
+  }//fridge clicked
 }//class Fridge
 
 class Table {
@@ -159,16 +177,20 @@ class Table {
   	}
 
   	display(){
-  		//quad(38, 31, 86, 20, 100, 63, 30, 76);
-  		//quad(this.x1, this.y1, this.x1 - 50, this.y1 + 11, this.x1 - 31, this.y1 - 25, this.x1 + 8, this.y1 - 41);
-  		//quad(this.x1, this.y1, this.x1 - 100, this.y1 + 10, this.x1 - 70, this.y1 - 25, this.x1 + 20, this.y1 - 20);
-  		fill(139, 69, 19);
   		//legs
+      fill(139, 69, 19);//brown
   		rect(this.x1 - 55, this.y1 + 50, 50, 100);//back left leg
   		rect(this.x1 + 55, this.y1 + 50, 50, 100);//back right leg
+      //below is black legs drawn on top of brown table legs to create dimension. Couldn't use alpha because checkerboard was visible in table legs.
+      fill(0, 85);//black opaque
+      rect(this.x1 - 55, this.y1 + 50, 50, 100);//back left leg
+      rect(this.x1 + 55, this.y1 + 50, 50, 100);//back right leg
+
+      fill(150, 69, 19);//brown
   		rect(this.x1 + 100, this.y1 + 100, 50, 100);//front right leg
   		rect(this.x1 - 100, this.y1 + 100, 50, 100);//front left leg
-  		rect(this.x1, this.y1, 250, 100)//tabletop
+      fill(143, 69, 19);//brown
+  		rect(this.x1, this.y1, 250, 100);//tabletop
 
   		phone.display();
   	}
@@ -185,5 +207,47 @@ class Table {
   		fill(0);
   		rect(200, 273, 17, 5, 5);//phone notch
 
-  	}
+  	}//phone display
   }//class Phone
+
+  class CheckeredFloor { //credit: allison.parrish "checkerboard"
+    constructor(){}
+
+    display(){
+    for (let i = 0; i < width; i += 75) {
+    for (let j = height/2 + 25; j < height; j += 75) {
+      if (j % 2 == 0) {
+        if (i % 2 == 0) {
+          fill(0);
+        }//if i even
+        else {
+          fill(255);
+        }//else white
+      }//if j even
+      else {
+        if (i % 2 == 0) {
+          fill(255);
+        }//else white
+        else {
+          fill(0);
+        }//else black
+      }//else i and j are not even
+      noStroke();
+      rectMode(CORNER);
+      rect(i, j, 75, 75);
+    }//for j
+  }//for i
+}//display CheckeredFloor
+  }//class CheckeredFloor
+
+  class Windows {
+    constructor() {}
+
+    display() {
+    fill(255, 112, 52);//burnt orange
+    rect(800, 125, 150, 175);//orange window
+    fill(184, 188, 134);//olive green window panel color
+    rect(800, 125, 10, 175);//center vertical window panel
+    rect(800, 125, 150, 10);//center hortizontal window panel
+  }
+  }
