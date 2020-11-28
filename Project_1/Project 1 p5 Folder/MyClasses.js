@@ -159,7 +159,7 @@ class Fridge {
     rect(width/2 + 90, height/2 + 125, 10, 5);//top fridge hinge
   }//empty method
 
-  fridgeLight(){
+  fridgeLight(){ //used unused Spotlight triangle as the fridge light
     noStroke();
     fill(255, 204, 0, random(45, 80));
     triangle(width/2 - 80, height/2 + 130, width/2, height/2 - 130, width/2 + 80, height/2 + 130);
